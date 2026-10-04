@@ -149,6 +149,7 @@ Wszystkie dane zależne od właściciela aplikacji są w jednym miejscu: **`grad
 SafeCheck-kotlin/
 ├── README.md                       – skrócony opis i szybki start
 ├── CHANGELOG.md                    – historia zmian
+├── LICENSE.md                      – licencja (kod poufny, wszelkie prawa zastrzeżone)
 ├── docs/
 │   ├── DOKUMENTACJA_TECHNICZNA.md  – ten dokument
 │   └── strona/                     – dokumenty dla użytkowników (do hostowania)

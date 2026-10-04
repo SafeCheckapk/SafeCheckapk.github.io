@@ -38,6 +38,10 @@ const PAGES = [
     mermaid: true
   },
   {
+    src: "licencja.md", out: "licencja.html", title: "Licencja",
+    description: "Licencja i prawa autorskie aplikacji SafeCheck: zasady korzystania z wersji demonstracyjnej, strony i dokumentów."
+  },
+  {
     src: "historia-zmian.md", out: "historia-zmian.html", title: "Historia zmian",
     description: "Historia zmian aplikacji SafeCheck."
   }

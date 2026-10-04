@@ -39,4 +39,4 @@ Po zmianie zaktualizuj datę `<lastmod>` w `sitemap.xml`.
 2. Weryfikacja: metoda „Tag HTML” – wklej meta tag w `index.html` (miejsce oznaczone komentarzem) albo „Plik HTML” – wgraj plik `google….html` do katalogu głównego.
 3. Prześlij mapę witryny: `sitemap.xml`.
 
-© SafeCheck. Wszelkie prawa zastrzeżone. Ikony: Material Symbols (Apache 2.0).
+© 2026 SafeCheck. Wszelkie prawa zastrzeżone – zob. [LICENSE.md](LICENSE.md). Ikony: Material Symbols (Apache 2.0).
