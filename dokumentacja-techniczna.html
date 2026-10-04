@@ -72,7 +72,7 @@
 </tr>
 <tr>
 <td><strong>Wersja kodu</strong></td>
-<td>2.5.2 (versionCode 18)</td>
+<td>2.5.3 (versionCode 19)</td>
 </tr>
 <tr>
 <td><strong>Platforma</strong></td>
@@ -89,6 +89,10 @@
 <tr>
 <td><strong>Monetyzacja</strong></td>
 <td>reklamy Google AdMob (baner + reklama pełnoekranowa)</td>
+</tr>
+<tr>
+<td><strong>Dystrybucja</strong></td>
+<td>plik APK na stronie projektu (GitHub Releases). Aplikacja <strong>nie jest publikowana w Google Play</strong></td>
 </tr>
 <tr>
 <td><strong>Języki interfejsu</strong></td>
@@ -116,7 +120,7 @@
 <li><a href="#16-internacjonalizacja">Internacjonalizacja</a></li>
 <li><a href="#17-bezpieczeństwo-i-prywatność">Bezpieczeństwo i prywatność</a></li>
 <li><a href="#18-testowanie">Testowanie</a></li>
-<li><a href="#19-wydanie-i-publikacja-w-google-play">Wydanie i publikacja w Google Play</a></li>
+<li><a href="#19-wydanie-i-dystrybucja">Wydanie i dystrybucja</a></li>
 <li><a href="#20-znane-ograniczenia-i-dług-techniczny">Znane ograniczenia i dług techniczny</a></li>
 <li><a href="#21-proponowany-rozwój-roadmapa">Proponowany rozwój (roadmapa)</a></li>
 <li><a href="#22-słownik-pojęć">Słownik pojęć</a></li>
@@ -138,6 +142,7 @@
 <li>SMS-y idą przez sieć komórkową użytkownika, więc nie trzeba internetu ani aplikacji po stronie opiekuna.</li>
 <li>Alarm działa przy zamkniętej aplikacji, w trybie oszczędzania energii i po restarcie telefonu.</li>
 <li>Ostrzeżenia o ustawieniach producentów (Xiaomi, Huawei, Oppo, Vivo), które agresywnie zamykają aplikacje w tle.</li>
+<li>Dystrybucja bez sklepu: plik APK ze strony projektu. Kod jest przygotowany także do ewentualnej publikacji w Google Play przez nabywcę (rozdz. 19.6).</li>
 </ul>
 <hr>
 <h2 id="2-stos-technologiczny">2. Stos technologiczny <a class="anchor" href="#2-stos-technologiczny" aria-label="Link do sekcji">#</a></h2>
@@ -224,7 +229,7 @@
 <pre><code class="language-bash">./gradlew assembleDebug        # APK testowy: app/build/outputs/apk/debug/app-debug.apk
 ./gradlew installDebug         # instalacja na podłączonym urządzeniu
 ./gradlew assembleRelease      # APK produkcyjny (wymaga podpisu, patrz rozdz. 19)
-./gradlew bundleRelease        # AAB do Google Play
+./gradlew bundleRelease        # AAB (tylko przy ewentualnej publikacji w Google Play)
 ./gradlew lint                 # analiza statyczna</code></pre>
 <h3 id="34-warianty-budowania">3.4 Warianty budowania <a class="anchor" href="#34-warianty-budowania" aria-label="Link do sekcji">#</a></h3>
 <div class="table-wrap"><table><thead><tr>
@@ -256,7 +261,7 @@
 </tr>
 </thead><tbody><tr>
 <td><code>safecheck.applicationId</code></td>
-<td>identyfikator aplikacji w Google Play. <strong>Po publikacji nie da się go zmienić.</strong></td>
+<td>identyfikator aplikacji (pakiet Androida). Zmiana oznacza dla systemu <strong>inną aplikację</strong> – nie zainstaluje się jako aktualizacja istniejącej</td>
 <td><code>defaultConfig.applicationId</code></td>
 </tr>
 <tr>
@@ -289,11 +294,21 @@
 <td>link do regulaminu</td>
 <td><code>BuildConfig.TERMS_URL</code></td>
 </tr>
+<tr>
+<td><code>safecheck.downloadUrl</code></td>
+<td>strona pobierania aplikacji – link w SMS-ie „Zaproś znajomych”</td>
+<td><code>BuildConfig.DOWNLOAD_URL</code></td>
+</tr>
+<tr>
+<td><code>safecheck.umpTestDeviceIds</code></td>
+<td>(opcjonalnie) urządzenia testowe formularza zgody UMP, tylko build debug</td>
+<td><code>BuildConfig.UMP_TEST_DEVICE_IDS</code></td>
+</tr>
 </tbody></table></div>
 <p><strong>Wartości domyślne</strong> w repozytorium:</p>
 <ul>
 <li>Reklamy: <strong>oficjalne testowe ID Google</strong>. Działają od razu, wyświetlają reklamy z napisem „Test Ad” i nie generują przychodu.</li>
-<li>Linki: domena <code>example.com</code>. Gotowe dokumenty do opublikowania są w katalogu <a href="/#dokumenty"><code>docs/strona/</code></a>, patrz <a href="#195-hosting-dokumentów-instrukcja-regulamin-polityka">rozdział 19.5</a>.</li>
+<li>Linki do dokumentów i strona pobierania: strona projektu <code>https://safecheckapk.github.io</code>. Nabywca podmienia je na własną stronę – gotowe dokumenty do opublikowania są w katalogu <a href="/#dokumenty"><code>docs/strona/</code></a>, patrz <a href="#195-hosting-dokumentów-instrukcja-regulamin-polityka">rozdział 19.5</a>.</li>
 </ul>
 <p><strong>Pozostałe elementy marki:</strong></p>
 <div class="table-wrap"><table><thead><tr>
@@ -503,7 +518,17 @@
 </tbody></table></div>
 <p>Motyw: <code>MaterialTheme.colorScheme.copy(primary = SafeGreen, background = BgColor)</code>.</p>
 <h3 id="72-localprefs">7.2 <code>LocalPrefs</code> <a class="anchor" href="#72-localprefs" aria-label="Link do sekcji">#</a></h3>
-<p>Cienka warstwa nad <code>SharedPreferences</code>. Każda właściwość odpowiada jednemu kluczowi (patrz <a href="#10-model-danych-i-przechowywanie">rozdział 10</a>). Zapis jest asynchroniczny (<code>apply()</code>).</p>
+<p>Jedyny punkt dostępu do zapisanych danych – korzystają z niego UI, <code>AlarmService</code> i <code>BootReceiver</code>. Dane są w <strong>dwóch plikach</strong> (patrz <a href="#10-model-danych-i-przechowywanie">rozdział 10</a>):</p>
+<ul>
+<li><code>safecheck_local_db</code> – ustawienia użytkownika, objęte kopią zapasową Androida,</li>
+<li><code>safecheck_device_state</code> – termin licznika na tym urządzeniu, <strong>wyłączony</strong> z kopii zapasowej.</li>
+</ul>
+<p>Nazwy plików i kluczy są stałymi w <code>LocalPrefs.Companion</code>. Ustawienia zapisywane są asynchronicznie (<code>apply()</code>), termin licznika synchronicznie (<code>commit()</code>), bo odczytują go też procesy w tle.</p>
+<p>Dodatkowo:</p>
+<ul>
+<li><code>isRestoredWithoutTimer</code> – <code>true</code>, gdy aplikacja jest skonfigurowana (imię + opiekunowie), ale na urządzeniu nie ma terminu, czyli ustawienia przywrócono z kopii zapasowej. <code>MainDashboard</code> uruchamia wtedy licznik od nowa i pokazuje komunikat <code>restored_from_backup</code>,</li>
+<li>migracja w <code>init</code>: termin zapisany przez wersje ≤ 2.5.2 w pliku ustawień jest jednorazowo przenoszony do pliku stanu urządzenia.</li>
+</ul>
 <h3 id="73-ekrany-konfiguracji">7.3 Ekrany konfiguracji <a class="anchor" href="#73-ekrany-konfiguracji" aria-label="Link do sekcji">#</a></h3>
 <div class="table-wrap"><table><thead><tr>
 <th>Composable</th>
@@ -582,7 +607,7 @@
 </tr>
 <tr>
 <td><code>InviteFriendsDialog</code></td>
-<td>odczyt kontaktów (<code>ContactsContract</code>, wątek IO, deduplikacja po numerze). Przycisk „Zaproś” wysyła SMS z linkiem do sklepu Google Play (<code>invite_sms_body</code> + <code>packageName</code>). Gdy bezpośrednia wysyłka się nie uda, otwiera aplikację SMS (<code>ACTION_VIEW sms:</code>)</td>
+<td>odczyt kontaktów (<code>ContactsContract</code>, wątek IO, deduplikacja po numerze). Przycisk „Zaproś” wysyła SMS z linkiem do strony pobierania (<code>invite_sms_body</code> + <code>BuildConfig.DOWNLOAD_URL</code>). Gdy bezpośrednia wysyłka się nie uda, otwiera aplikację SMS (<code>ACTION_VIEW sms:</code>)</td>
 </tr>
 <tr>
 <td><code>TimeEditDialog</code></td>
@@ -841,7 +866,9 @@
 </blockquote>
 <hr>
 <h2 id="10-model-danych-i-przechowywanie">10. Model danych i przechowywanie <a class="anchor" href="#10-model-danych-i-przechowywanie" aria-label="Link do sekcji">#</a></h2>
-<h3 id="101-sharedpreferences--plik-safechecklocaldb">10.1 SharedPreferences – plik <code>safecheck_local_db</code> <a class="anchor" href="#101-sharedpreferences--plik-safechecklocaldb" aria-label="Link do sekcji">#</a></h3>
+<h3 id="101-sharedpreferences">10.1 SharedPreferences <a class="anchor" href="#101-sharedpreferences" aria-label="Link do sekcji">#</a></h3>
+<p>Dane są w dwóch plikach w prywatnym katalogu aplikacji (<code>/data/data/&lt;pakiet&gt;/shared_prefs/</code>). Dostęp wyłącznie przez <code>LocalPrefs</code>.</p>
+<p><strong>Plik <code>safecheck_local_db.xml</code> – ustawienia użytkownika (objęty kopią zapasową):</strong></p>
 <div class="table-wrap"><table><thead><tr>
 <th>Klucz</th>
 <th>Typ</th>
@@ -872,7 +899,7 @@
 <td><code>&quot;&quot;</code></td>
 <td>imię (do SMS)</td>
 <td>UI</td>
-<td>UI, <code>AlarmService</code> (domyślnie „Użytkownik”)</td>
+<td>UI, <code>AlarmService</code> (pusty → „Użytkownik”)</td>
 </tr>
 <tr>
 <td><code>contact_phones</code></td>
@@ -891,14 +918,6 @@
 <td>UI, <code>AlarmService</code></td>
 </tr>
 <tr>
-<td><code>alarm_target</code></td>
-<td>Long (ms epoch)</td>
-<td><code>0</code></td>
-<td>moment końca licznika (<code>0</code> = nieustawiony)</td>
-<td>UI, <code>AlarmService</code></td>
-<td>UI, <code>AlarmService</code>, <code>BootReceiver</code></td>
-</tr>
-<tr>
 <td><code>is_intro_seen</code></td>
 <td>Boolean</td>
 <td><code>false</code></td>
@@ -907,8 +926,26 @@
 <td>UI</td>
 </tr>
 </tbody></table></div>
+<p><strong>Plik <code>safecheck_device_state.xml</code> – stan licznika na tym urządzeniu (wyłączony z kopii zapasowej):</strong></p>
+<div class="table-wrap"><table><thead><tr>
+<th>Klucz</th>
+<th>Typ</th>
+<th>Domyślnie</th>
+<th>Znaczenie</th>
+<th>Zapis</th>
+<th>Odczyt</th>
+</tr>
+</thead><tbody><tr>
+<td><code>alarm_target</code></td>
+<td>Long (ms epoch)</td>
+<td><code>0</code></td>
+<td>moment końca licznika (<code>0</code> = brak terminu: świeża instalacja lub ustawienia przywrócone z kopii)</td>
+<td>UI, <code>AlarmService</code></td>
+<td>UI, <code>AlarmService</code>, <code>BootReceiver</code></td>
+</tr>
+</tbody></table></div>
 <blockquote>
-<p><code>AlarmService</code> i <code>BootReceiver</code> czytają klucze <strong>bezpośrednio</strong>, a nie przez <code>LocalPrefs</code>. Zmieniając nazwę klucza, zmień ją we wszystkich miejscach (najlepiej wydzielić stałe, patrz roadmapa).</p>
+<p>W wersjach ≤ 2.5.2 <code>alarm_target</code> był zapisany w <code>safecheck_local_db.xml</code>. <code>LocalPrefs</code> przenosi go automatycznie przy pierwszym uruchomieniu wersji 2.5.3 (migracja zweryfikowana na emulatorze).</p>
 </blockquote>
 <h3 id="102-klasy-danych">10.2 Klasy danych <a class="anchor" href="#102-klasy-danych" aria-label="Link do sekcji">#</a></h3>
 <pre><code class="language-kotlin">data class LanguageOption(val code: String, val name: String, val flag: String)
@@ -916,7 +953,59 @@ data class IntroStep(val title: String, val description: String, val icon: Image
 data class PhoneContact(val name: String, val phoneNumber: String)
 data class Country(val code: String, val name: String, val dialCode: String, val flagEmoji: String)</code></pre>
 <h3 id="103-kopia-zapasowa">10.3 Kopia zapasowa <a class="anchor" href="#103-kopia-zapasowa" aria-label="Link do sekcji">#</a></h3>
-<p><code>android:allowBackup=&quot;true&quot;</code>, reguły w <code>res/xml/backup_rules.xml</code> i <code>data_extraction_rules.xml</code> (domyślne, puste). Oznacza to, że <strong>Android Auto Backup może skopiować ustawienia na konto Google użytkownika</strong> i przywrócić je po reinstalacji. Opisuje to polityka prywatności. Aby wyłączyć: <code>allowBackup=&quot;false&quot;</code> lub wykluczenie <code>sharedpref/safecheck_local_db.xml</code> w regułach.</p>
+<p>Aplikacja <strong>nie ma własnej funkcji kopii zapasowej ani konta</strong>. Korzysta z mechanizmu systemu Android – <strong>Auto Backup</strong> (kopia na koncie Google) i <strong>device-to-device transfer</strong> (przenoszenie danych przy konfiguracji nowego telefonu). Włącza to <code>android:allowBackup=&quot;true&quot;</code> w manifeście, a zakres określają reguły:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Plik reguł</th>
+<th>Android</th>
+<th>Zakres</th>
+</tr>
+</thead><tbody><tr>
+<td><code>res/xml/backup_rules.xml</code> (<code>fullBackupContent</code>)</td>
+<td>6–11</td>
+<td><code>include</code> tylko <code>sharedpref/safecheck_local_db.xml</code></td>
+</tr>
+<tr>
+<td><code>res/xml/data_extraction_rules.xml</code> (<code>dataExtractionRules</code>)</td>
+<td>12+</td>
+<td><code>cloud-backup</code> i <code>device-transfer</code>: <code>include</code> tylko <code>sharedpref/safecheck_local_db.xml</code></td>
+</tr>
+</tbody></table></div>
+<p>Reguły typu <code>include</code> oznaczają, że kopiowany jest <strong>wyłącznie</strong> plik ustawień. Nie są kopiowane: termin licznika (<code>safecheck_device_state.xml</code>), ustawienia zgody UMP, pliki WebView ani inne dane.</p>
+<p><strong>Co dzieje się po przywróceniu na nowym telefonie:</strong></p>
+<div class="table-wrap"><table><thead><tr>
+<th>Element</th>
+<th>Stan</th>
+</tr>
+</thead><tbody><tr>
+<td>imię, opiekunowie, długość licznika, język, ukończona konfiguracja</td>
+<td>przywrócone</td>
+</tr>
+<tr>
+<td>termin licznika</td>
+<td>brak → <code>MainDashboard</code> ustawia nowy termin (teraz + długość licznika) i pokazuje komunikat <code>restored_from_backup</code></td>
+</tr>
+<tr>
+<td>uprawnienia runtime i specjalne</td>
+<td><strong>nie</strong> są przenoszone – aplikacja prosi o nie ponownie (<code>Check…UI()</code>)</td>
+</tr>
+<tr>
+<td>zgoda na reklamy (UMP)</td>
+<td>nie jest przenoszona – formularz pojawi się ponownie</td>
+</tr>
+<tr>
+<td>alarm w <code>AlarmManager</code></td>
+<td>nie istnieje do pierwszego otwarcia aplikacji (wtedy jest planowany)</td>
+</tr>
+</tbody></table></div>
+<p>Dlaczego termin jest wyłączony z kopii: przywrócony stary termin zwykle już minął, więc pierwsze otwarcie aplikacji natychmiast uruchomiłoby alarm, a bez reakcji – SMS do opiekunów (problem istniał do wersji 2.5.2).</p>
+<p><strong>Ograniczenia (zależne od systemu, nie od aplikacji):</strong></p>
+<ul>
+<li>kopia wymaga włączonej kopii zapasowej Google; system wykonuje ją zwykle raz na dobę (urządzenie bezczynne, ładowanie, Wi-Fi),</li>
+<li>aplikacja dystrybuowana jako APK nie jest automatycznie instalowana na nowym telefonie podczas jego konfiguracji – użytkownik instaluje ją ręcznie; przywrócenie ustawień przy takiej instalacji zależy od wersji Androida i producenta i <strong>nie jest gwarantowane</strong>,</li>
+<li>po przywróceniu alarm jest planowany dopiero przy pierwszym otwarciu aplikacji.</li>
+</ul>
+<p>Weryfikacja: test T15 (rozdz. 18) – wykonany na emulatorze Pixel 8 przez <code>bmgr</code> z transportem lokalnym.</p>
+<p>Aby całkowicie wyłączyć kopię: <code>android:allowBackup=&quot;false&quot;</code> w manifeście (wtedy po zmianie telefonu aplikację konfiguruje się od nowa). Należy też zaktualizować politykę prywatności (rozdz. 4.4) i instrukcję (FAQ).</p>
 <hr>
 <h2 id="11-kontrakt-komunikacji-intenty-broadcasty">11. Kontrakt komunikacji (Intenty, broadcasty) <a class="anchor" href="#11-kontrakt-komunikacji-intenty-broadcasty" aria-label="Link do sekcji">#</a></h2>
 <h3 id="111-akcje-alarmservice">11.1 Akcje <code>AlarmService</code> <a class="anchor" href="#111-akcje-alarmservice" aria-label="Link do sekcji">#</a></h3>
@@ -1201,8 +1290,9 @@ data class Country(val code: String, val name: String, val dialCode: String, val
 <p><strong>Wymagania przed publikacją:</strong></p>
 <ol>
 <li>Konto AdMob, aplikacja i dwie jednostki reklamowe → ID do <code>gradle.properties</code>.</li>
-<li>Plik <strong><code>app-ads.txt</code></strong> na stronie dewelopera (domena z karty w Google Play).</li>
+<li>Plik <strong><code>app-ads.txt</code></strong> na stronie dewelopera.</li>
 <li>W konsoli AdMob: <strong>Privacy &amp; messaging → European regulations</strong> – utwórz i opublikuj komunikat zgody dla swojej aplikacji (język, logo, link do polityki prywatności). Bez tego formularz UMP się nie pojawi. Na testowym ID Google wyświetla się komunikat „Publisher Test Ads”.</li>
+<li><strong>Aplikacja spoza sklepu (obecny model dystrybucji):</strong> AdMob weryfikuje aplikacje przez powiązanie z kartą w obsługiwanym sklepie (Google Play i inne). Aplikacja niepowiązana ze sklepem może mieć <strong>ograniczone wyświetlanie reklam</strong> (<em>limited ad serving</em>), więc przychód z reklam przy dystrybucji wyłącznie przez APK jest niepewny – patrz ryzyko R5 (rozdz. 20.1).</li>
 </ol>
 <p><strong>Całkowite usunięcie reklam:</strong></p>
 <ol>
@@ -1243,7 +1333,7 @@ data class Country(val code: String, val name: String, val dialCode: String, val
 </tr>
 <tr>
 <td>Dane osobowe na urządzeniu</td>
-<td>imię, numery opiekunów, ustawienia, wszystko w SharedPreferences (prywatny katalog aplikacji, bez szyfrowania)</td>
+<td>imię, numery opiekunów, ustawienia w SharedPreferences (prywatny katalog aplikacji, bez szyfrowania)</td>
 </tr>
 <tr>
 <td>Lokalizacja</td>
@@ -1271,14 +1361,14 @@ data class Country(val code: String, val name: String, val dialCode: String, val
 </tr>
 <tr>
 <td>Kopia zapasowa</td>
-<td>włączona (Auto Backup), patrz 10.3</td>
+<td>systemowa (Auto Backup / device transfer), tylko plik ustawień – bez terminu licznika, patrz 10.3</td>
 </tr>
 </tbody></table></div>
 <p>Szczegóły dla użytkownika są w <a href="polityka-prywatnosci.html">polityce prywatności</a>.</p>
-<p><strong>Google Play – sekcja „Bezpieczeństwo danych” (Data safety), propozycja wypełnienia:</strong></p>
+<p><strong>Tylko przy ewentualnej publikacji w Google Play – sekcja „Bezpieczeństwo danych” (Data safety), propozycja wypełnienia:</strong></p>
 <ul>
 <li>Lokalizacja (przybliżona i dokładna): <em>udostępniana</em> (w SMS do opiekunów wskazanych przez użytkownika), funkcja aplikacji, nie jest zbierana przez dewelopera.</li>
-<li>Informacje osobiste (imię, numery telefonów): przechowywane wyłącznie na urządzeniu.</li>
+<li>Informacje osobiste (imię, numery telefonów): przechowywane na urządzeniu; mogą trafić do systemowej kopii zapasowej Google użytkownika.</li>
 <li>Identyfikatory urządzenia / reklamowe: zbierane przez AdMob (reklamy, analityka, zapobieganie oszustwom).</li>
 <li>Dane nie są szyfrowane podczas przesyłania przez sieć SMS (ograniczenie technologii SMS).</li>
 <li>Użytkownik może usunąć dane: „Usuń konto” w aplikacji albo odinstalowanie.</li>
@@ -1353,7 +1443,7 @@ data class Country(val code: String, val name: String, val dialCode: String, val
 <tr>
 <td>T12</td>
 <td>Zaproszenie znajomego</td>
-<td>SMS z linkiem do Google Play, komunikat „Wysłano!”</td>
+<td>SMS z linkiem do strony pobierania (<code>safecheck.downloadUrl</code>), komunikat „Wysłano!”</td>
 </tr>
 <tr>
 <td>T13</td>
@@ -1365,13 +1455,35 @@ data class Country(val code: String, val name: String, val dialCode: String, val
 <td>Numer niepoprawny / zbyt krótki</td>
 <td>przycisk „Dodaj” nieaktywny</td>
 </tr>
+<tr>
+<td>T15</td>
+<td>Kopia zapasowa i przywrócenie (<code>bmgr</code>, patrz niżej)</td>
+<td>przywrócone tylko ustawienia; brak <code>safecheck_device_state.xml</code>; po otwarciu komunikat „Przywrócono ustawienia…”, licznik od nowa, <strong>brak alarmu</strong></td>
+</tr>
+<tr>
+<td>T16</td>
+<td>Aktualizacja z 2.5.2 (termin w starym pliku)</td>
+<td>termin przeniesiony do <code>safecheck_device_state.xml</code> bez zmiany wartości, alarm zaplanowany na ten sam moment</td>
+</tr>
 </tbody></table></div>
 <h3 id="182-przydatne-polecenia-adb">18.2 Przydatne polecenia ADB <a class="anchor" href="#182-przydatne-polecenia-adb" aria-label="Link do sekcji">#</a></h3>
 <pre><code class="language-bash"># zaplanowane alarmy aplikacji
 adb shell dumpsys alarm | grep -A3 com.example.safecheck
 
-# podgląd zapisanych ustawień (tylko build debug)
+# podgląd zapisanych danych (tylko build debug)
 adb shell run-as com.example.safecheck cat shared_prefs/safecheck_local_db.xml
+adb shell run-as com.example.safecheck cat shared_prefs/safecheck_device_state.xml
+
+# T15: kopia zapasowa i przywrócenie (transport lokalny, bez konta Google)
+adb shell bmgr enable true
+adb shell bmgr transport com.android.localtransport/.LocalTransport
+adb shell settings put secure backup_auto_restore 1
+adb shell bmgr backupnow com.example.safecheck
+adb uninstall com.example.safecheck
+adb install app-debug.apk            # przywrócenie następuje przy instalacji
+adb shell run-as com.example.safecheck ls shared_prefs
+# po teście: powrót do transportu Google
+adb shell bmgr transport com.google.android.gms/.backup.BackupTransportService
 
 # nadanie uprawnień bez klikania (emulator / testy)
 adb shell pm grant com.example.safecheck android.permission.SEND_SMS
@@ -1384,15 +1496,52 @@ adb shell dumpsys deviceidle force-idle</code></pre>
 <p><strong>Uwaga:</strong> przy testach na prawdziwym telefonie SMS-y są wysyłane naprawdę i płatne według taryfy. Jako opiekuna wpisz własny drugi numer. Emulator nie wysyła SMS-ów do sieci.</p>
 </blockquote>
 <hr>
-<h2 id="19-wydanie-i-publikacja-w-google-play">19. Wydanie i publikacja w Google Play <a class="anchor" href="#19-wydanie-i-publikacja-w-google-play" aria-label="Link do sekcji">#</a></h2>
-<h3 id="191-podpis-aplikacji">19.1 Podpis aplikacji <a class="anchor" href="#191-podpis-aplikacji" aria-label="Link do sekcji">#</a></h3>
+<h2 id="19-wydanie-i-dystrybucja">19. Wydanie i dystrybucja <a class="anchor" href="#19-wydanie-i-dystrybucja" aria-label="Link do sekcji">#</a></h2>
+<h3 id="191-model-dystrybucji">19.1 Model dystrybucji <a class="anchor" href="#191-model-dystrybucji" aria-label="Link do sekcji">#</a></h3>
+<p>SafeCheck <strong>nie jest publikowany w Google Play</strong>. Aplikacja jest dystrybuowana jako plik APK:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Element</th>
+<th>Gdzie</th>
+</tr>
+</thead><tbody><tr>
+<td>strona projektu (opis, dokumenty, pobieranie)</td>
+<td><code>https://safecheckapk.github.io</code> (repozytorium <code>SafeCheckapk.github.io</code>)</td>
+</tr>
+<tr>
+<td>plik APK</td>
+<td>GitHub Releases tego repozytorium, stały link: <code>…/releases/latest/download/SafeCheck.apk</code></td>
+</tr>
+<tr>
+<td>dokumenty otwierane z aplikacji</td>
+<td><code>safecheck.manualUrl</code>, <code>safecheck.termsUrl</code>, <code>safecheck.privacyUrl</code></td>
+</tr>
+<tr>
+<td>link w zaproszeniach SMS</td>
+<td><code>safecheck.downloadUrl</code></td>
+</tr>
+</tbody></table></div>
+<p>Konsekwencje dla użytkownika i kodu:</p>
+<ul>
+<li>instalacja wymaga zgody na „instalowanie nieznanych aplikacji” (opisane w instrukcji),</li>
+<li><strong>brak automatycznych aktualizacji</strong> – użytkownik pobiera nową wersję ze strony; instaluje się ona na poprzedniej z zachowaniem danych, jeśli ma ten sam klucz podpisu (19.2) i wyższy <code>versionCode</code> (19.3),</li>
+<li>nowy telefon nie zainstaluje aplikacji sam podczas konfiguracji (wpływ na kopię zapasową – rozdz. 10.3),</li>
+<li>wymagania Google Play dotyczące uprawnień (SMS, pełnoekranowe powiadomienia, dokładne alarmy) <strong>nie mają zastosowania</strong>, dopóki aplikacja nie jest publikowana w sklepie (19.6).</li>
+</ul>
+<p><strong>Wydanie nowej wersji (obecny proces):</strong></p>
 <ol>
-<li>Wygeneruj klucz uploadu (przechowuj go <strong>poza repozytorium</strong> i w kopii zapasowej):<pre><code class="language-bash">keytool -genkeypair -v -keystore upload-key.jks -alias upload \
+<li>podnieś <code>versionCode</code> / <code>versionName</code>, uzupełnij <code>CHANGELOG.md</code>,</li>
+<li><code>./gradlew assembleRelease</code>, podpisz APK (19.2), zweryfikuj <code>apksigner verify</code>,</li>
+<li>utwórz wydanie na GitHub (<code>gh release create vX.Y.Z SafeCheck.apk …</code>),</li>
+<li>zaktualizuj na stronie numer wersji i sumę SHA-256 (<code>sha256sum SafeCheck.apk</code>).</li>
+</ol>
+<h3 id="192-podpis-aplikacji">19.2 Podpis aplikacji <a class="anchor" href="#192-podpis-aplikacji" aria-label="Link do sekcji">#</a></h3>
+<ol>
+<li>Wygeneruj klucz podpisu release (przechowuj go <strong>poza repozytorium</strong> i w kopii zapasowej):<pre><code class="language-bash">keytool -genkeypair -v -keystore safecheck-release.jks -alias safecheck \
         -keyalg RSA -keysize 2048 -validity 10000</code></pre>
 </li>
-<li>Dodaj do <code>~/.gradle/gradle.properties</code> (nie do repozytorium):<pre><code class="language-properties">SAFECHECK_STORE_FILE=C:/sciezka/upload-key.jks
+<li>Dodaj do <code>~/.gradle/gradle.properties</code> (nie do repozytorium):<pre><code class="language-properties">SAFECHECK_STORE_FILE=C:/sciezka/safecheck-release.jks
 SAFECHECK_STORE_PASSWORD=...
-SAFECHECK_KEY_ALIAS=upload
+SAFECHECK_KEY_ALIAS=safecheck
 SAFECHECK_KEY_PASSWORD=...</code></pre>
 </li>
 <li>W <code>app/build.gradle.kts</code>:<pre><code class="language-kotlin">android {
@@ -1407,14 +1556,43 @@ SAFECHECK_KEY_PASSWORD=...</code></pre>
     buildTypes { release { signingConfig = signingConfigs.getByName(&quot;release&quot;) } }
 }</code></pre>
 </li>
-<li>W Play Console włącz <strong>Play App Signing</strong> (wymagane dla AAB).</li>
 </ol>
 <blockquote>
-<p>Aktualizacja istniejącej aplikacji w Google Play wymaga klucza, którym jest podpisana (lub resetu klucza uploadu przez Play Console, gdy aktywne jest Play App Signing). Nowy <code>applicationId</code> oznacza nową kartę w sklepie.</p>
+<p><strong>Klucz podpisu jest krytyczny przy dystrybucji APK.</strong> Android zainstaluje nową wersję na poprzedniej tylko wtedy, gdy obie są podpisane tym samym kluczem. Utrata klucza oznacza, że użytkownicy muszą odinstalować aplikację (tracąc ustawienia) przed instalacją nowej wersji. Przechowuj plik <code>.jks</code> i hasła w co najmniej dwóch bezpiecznych miejscach.</p>
+<p>Obecne APK demonstracyjne (2.5.x na stronie projektu) jest podpisane kluczem debug Android Studio. Nabywca powinien wydać kolejne wersje własnym kluczem release – pierwsza taka wersja wymaga jednorazowej reinstalacji u dotychczasowych użytkowników.</p>
 </blockquote>
-<h3 id="192-wersjonowanie">19.2 Wersjonowanie <a class="anchor" href="#192-wersjonowanie" aria-label="Link do sekcji">#</a></h3>
-<p>Przy każdym wydaniu zwiększ <code>versionCode</code> (liczba całkowita, zawsze rosnąca) i <code>versionName</code> w <code>app/build.gradle.kts</code>, a zmiany dopisz do <code>CHANGELOG.md</code>.</p>
-<h3 id="193-deklaracje-w-play-console">19.3 Deklaracje w Play Console <a class="anchor" href="#193-deklaracje-w-play-console" aria-label="Link do sekcji">#</a></h3>
+<h3 id="193-wersjonowanie">19.3 Wersjonowanie <a class="anchor" href="#193-wersjonowanie" aria-label="Link do sekcji">#</a></h3>
+<p>Przy każdym wydaniu zwiększ <code>versionCode</code> (liczba całkowita, zawsze rosnąca – Android odrzuci instalację wersji o niższym numerze) i <code>versionName</code> w <code>app/build.gradle.kts</code>, a zmiany dopisz do <code>CHANGELOG.md</code>.</p>
+<h3 id="194-lista-kontrolna-wydania">19.4 Lista kontrolna wydania <a class="anchor" href="#194-lista-kontrolna-wydania" aria-label="Link do sekcji">#</a></h3>
+<ul>
+<li><input disabled="" type="checkbox"> własne wartości w <code>gradle.properties</code> (applicationId, AdMob, linki, strona pobierania)</li>
+<li><input disabled="" type="checkbox"> własny <code>powered_by</code>, ikona i logo</li>
+<li><input disabled="" type="checkbox"> uzupełnione dane administratora w regulaminie i polityce prywatności (pola <code>[…]</code>)</li>
+<li><input disabled="" type="checkbox"> opublikowane dokumenty z <code>docs/strona/</code> pod adresami z konfiguracji</li>
+<li><input disabled="" type="checkbox"> <code>app-ads.txt</code> na stronie dewelopera (wymóg AdMob)</li>
+<li><input disabled="" type="checkbox"> opublikowany komunikat zgody w AdMob → <em>Privacy &amp; messaging</em> (formularz UMP jest już w kodzie)</li>
+<li><input disabled="" type="checkbox"> podpis release własnym kluczem, kopia zapasowa klucza</li>
+<li><input disabled="" type="checkbox"> <code>versionCode</code> / <code>versionName</code> + <code>CHANGELOG.md</code></li>
+<li><input disabled="" type="checkbox"> testy T1–T16 na co najmniej 2 urządzeniach (w tym Samsung/Xiaomi) z Androidem 14+</li>
+<li><input disabled="" type="checkbox"> nowe APK w GitHub Releases, suma SHA-256 na stronie</li>
+</ul>
+<h3 id="195-hosting-dokumentów-instrukcja-regulamin-polityka">19.5 Hosting dokumentów (instrukcja, regulamin, polityka) <a class="anchor" href="#195-hosting-dokumentów-instrukcja-regulamin-polityka" aria-label="Link do sekcji">#</a></h3>
+<p>Katalog <code>docs/strona/</code> jest gotowy do wrzucenia na dowolny hosting statyczny (np. GitHub Pages, Netlify, serwer WWW):</p>
+<pre><code>https://twoja-domena.pl/safecheck/docs.html?file=instrukcja.md
+https://twoja-domena.pl/safecheck/docs.html?file=regulamin.md
+https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code></pre>
+<ul>
+<li><code>docs.html</code> wczytuje wskazany plik <code>.md</code> i wyświetla go jako sformatowaną stronę. Dopuszcza tylko pliki z białej listy w kodzie.</li>
+<li>Te trzy adresy wpisz do <code>gradle.properties</code> (<code>safecheck.manualUrl</code>, <code>safecheck.termsUrl</code>, <code>safecheck.privacyUrl</code>).</li>
+<li>Pliki <code>.md</code> można też podlinkować bezpośrednio lub przekonwertować do HTML.</li>
+</ul>
+<h3 id="196-opcjonalnie-publikacja-w-google-play-dla-nabywcy">19.6 Opcjonalnie: publikacja w Google Play (dla nabywcy) <a class="anchor" href="#196-opcjonalnie-publikacja-w-google-play-dla-nabywcy" aria-label="Link do sekcji">#</a></h3>
+<p>Obecnie nieużywane. Jeśli nabywca zdecyduje się opublikować aplikację w Google Play, dodatkowo potrzebne są:</p>
+<ul>
+<li>konto dewelopera Google Play, <strong>Play App Signing</strong> i plik AAB (<code>./gradlew bundleRelease</code>),</li>
+<li>sekcja <em>Data safety</em> (propozycja w rozdz. 17),</li>
+<li>poniższe deklaracje:</li>
+</ul>
 <div class="table-wrap"><table><thead><tr>
 <th>Element</th>
 <th>Wymaganie</th>
@@ -1452,29 +1630,9 @@ SAFECHECK_KEY_PASSWORD=...</code></pre>
 <td>formularz IARC. Regulamin przewiduje użytkowników od 16 lat</td>
 </tr>
 </tbody></table></div>
-<h3 id="194-lista-kontrolna-wydania">19.4 Lista kontrolna wydania <a class="anchor" href="#194-lista-kontrolna-wydania" aria-label="Link do sekcji">#</a></h3>
-<ul>
-<li><input disabled="" type="checkbox"> własne wartości w <code>gradle.properties</code> (applicationId, AdMob, linki)</li>
-<li><input disabled="" type="checkbox"> własny <code>powered_by</code>, ikona i logo</li>
-<li><input disabled="" type="checkbox"> uzupełnione dane administratora w regulaminie i polityce prywatności (pola <code>[…]</code>)</li>
-<li><input disabled="" type="checkbox"> opublikowane dokumenty z <code>docs/strona/</code> pod adresami z konfiguracji</li>
-<li><input disabled="" type="checkbox"> <code>app-ads.txt</code> na stronie dewelopera</li>
-<li><input disabled="" type="checkbox"> opublikowany komunikat zgody w AdMob → <em>Privacy &amp; messaging</em> (formularz UMP jest już w kodzie)</li>
-<li><input disabled="" type="checkbox"> podpis release, Play App Signing</li>
-<li><input disabled="" type="checkbox"> <code>versionCode</code> / <code>versionName</code> + <code>CHANGELOG.md</code></li>
-<li><input disabled="" type="checkbox"> testy T1–T14 na co najmniej 2 urządzeniach (w tym Samsung/Xiaomi) z Androidem 14+</li>
-<li><input disabled="" type="checkbox"> deklaracje uprawnień i <em>Data safety</em> w Play Console</li>
-</ul>
-<h3 id="195-hosting-dokumentów-instrukcja-regulamin-polityka">19.5 Hosting dokumentów (instrukcja, regulamin, polityka) <a class="anchor" href="#195-hosting-dokumentów-instrukcja-regulamin-polityka" aria-label="Link do sekcji">#</a></h3>
-<p>Katalog <code>docs/strona/</code> jest gotowy do wrzucenia na dowolny hosting statyczny (np. GitHub Pages, Netlify, serwer WWW):</p>
-<pre><code>https://twoja-domena.pl/safecheck/docs.html?file=instrukcja.md
-https://twoja-domena.pl/safecheck/docs.html?file=regulamin.md
-https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code></pre>
-<ul>
-<li><code>docs.html</code> wczytuje wskazany plik <code>.md</code> i wyświetla go jako sformatowaną stronę. Dopuszcza tylko pliki z białej listy w kodzie.</li>
-<li>Te trzy adresy wpisz do <code>gradle.properties</code> (<code>safecheck.manualUrl</code>, <code>safecheck.termsUrl</code>, <code>safecheck.privacyUrl</code>).</li>
-<li>Pliki <code>.md</code> można też podlinkować bezpośrednio lub przekonwertować do HTML.</li>
-</ul>
+<blockquote>
+<p>Uwaga: aplikacja z Google Play i APK ze strony podpisane różnymi kluczami nie zaktualizują się wzajemnie.</p>
+</blockquote>
 <hr>
 <h2 id="20-znane-ograniczenia-i-dług-techniczny">20. Znane ograniczenia i dług techniczny <a class="anchor" href="#20-znane-ograniczenia-i-dług-techniczny" aria-label="Link do sekcji">#</a></h2>
 <h3 id="201-ryzyka-do-weryfikacji-przed-publikacją">20.1 Ryzyka do weryfikacji przed publikacją <a class="anchor" href="#201-ryzyka-do-weryfikacji-przed-publikacją" aria-label="Link do sekcji">#</a></h3>
@@ -1492,9 +1650,15 @@ https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code><
 </tr>
 <tr>
 <td><strong>R3</strong></td>
-<td><strong>Polityka Google Play dla SMS</strong></td>
-<td><code>SEND_SMS</code> jest uprawnieniem ograniczonym. Odrzucenie deklaracji blokuje publikację</td>
+<td><strong>Polityka Google Play dla SMS</strong> (tylko przy publikacji w sklepie)</td>
+<td><code>SEND_SMS</code> jest uprawnieniem ograniczonym w Google Play. Przy dystrybucji APK (obecny model) nie dotyczy</td>
 <td>przygotować uzasadnienie i wideo. Alternatywa: wysyłka przez Intent <code>ACTION_SENDTO</code>, która wymaga jednak interakcji użytkownika, więc nie działa automatycznie</td>
+</tr>
+<tr>
+<td><strong>R5</strong></td>
+<td><strong>Reklamy AdMob bez publikacji w sklepie</strong></td>
+<td>AdMob powiązuje aplikacje z kartą w obsługiwanym sklepie. Aplikacja dystrybuowana tylko jako APK może mieć ograniczone wyświetlanie reklam lub nie przejść weryfikacji, więc przychód z reklam jest niepewny</td>
+<td>przed oparciem modelu biznesowego na reklamach sprawdzić status aplikacji w konsoli AdMob; alternatywy: publikacja w sklepie (19.6), wersja płatna, model B2B (np. dla firm opieki)</td>
 </tr>
 <tr>
 <td><strong>R4</strong></td>
@@ -1529,12 +1693,6 @@ https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code><
 <td>podział na pliki/pakiety, ViewModel + <code>StateFlow</code></td>
 </tr>
 <tr>
-<td>D4</td>
-<td>klucze SharedPreferences zduplikowane w 3 miejscach</td>
-<td>ryzyko rozjazdu</td>
-<td>wspólne stałe w <code>LocalPrefs.Companion</code></td>
-</tr>
-<tr>
 <td>D5</td>
 <td>nieużywane: parametr <code>onReset</code>, <code>BenefitItem</code>, akcja <code>STOP_SERVICE</code>, extra <code>ALARM_STAGE</code>, kilkanaście stringów (rozdz. 16)</td>
 <td>szum w kodzie</td>
@@ -1566,9 +1724,15 @@ https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code><
 </tr>
 <tr>
 <td>D10</td>
-<td>ustawienia niezaszyfrowane, Auto Backup włączony</td>
-<td>numery opiekunów w kopii Google</td>
-<td><code>EncryptedSharedPreferences</code> / wykluczenie z backupu (decyzja produktowa)</td>
+<td>ustawienia niezaszyfrowane; plik ustawień objęty systemową kopią zapasową</td>
+<td>imię i numery opiekunów mogą trafić do kopii Google użytkownika (opisane w polityce prywatności)</td>
+<td><code>EncryptedSharedPreferences</code> (uwaga: zaszyfrowane dane nie przywrócą się na innym urządzeniu) lub <code>allowBackup=&quot;false&quot;</code> – decyzja produktowa</td>
+</tr>
+<tr>
+<td>D13</td>
+<td>brak mechanizmu powiadamiania o nowej wersji (dystrybucja APK)</td>
+<td>użytkownicy mogą długo korzystać ze starej wersji</td>
+<td>sprawdzanie najnowszego wydania przez API GitHub Releases i komunikat w aplikacji</td>
 </tr>
 <tr>
 <td>D11</td>
@@ -1583,7 +1747,7 @@ https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code><
 <td>rozszerzyć warunek o <code>QUICKBOOT_POWERON</code></td>
 </tr>
 </tbody></table></div>
-<h3 id="203-błędy-i-braki-naprawione-w-252">20.3 Błędy i braki naprawione w 2.5.2 <a class="anchor" href="#203-błędy-i-braki-naprawione-w-252" aria-label="Link do sekcji">#</a></h3>
+<h3 id="203-błędy-i-braki-naprawione-w-252-i-253">20.3 Błędy i braki naprawione w 2.5.2 i 2.5.3 <a class="anchor" href="#203-błędy-i-braki-naprawione-w-252-i-253" aria-label="Link do sekcji">#</a></h3>
 <div class="table-wrap"><table><thead><tr>
 <th>ID</th>
 <th>Opis</th>
@@ -1619,6 +1783,21 @@ https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code><
 <td>zawartość karty licznika przesunięta w lewo</td>
 <td>kolumna z <code>fillMaxWidth()</code></td>
 </tr>
+<tr>
+<td>B7 (2.5.3)</td>
+<td>po przywróceniu ustawień z kopii zapasowej na nowym telefonie wracał stary, zwykle miniony termin licznika – pierwsze otwarcie aplikacji mogło od razu uruchomić alarm i SMS do opiekunów</td>
+<td>termin w osobnym pliku <code>safecheck_device_state</code> wyłączonym z kopii; po przywróceniu licznik startuje od nowa z komunikatem. Zweryfikowano na emulatorze (T15, T16)</td>
+</tr>
+<tr>
+<td>B8 (2.5.3)</td>
+<td>SMS „Zaproś znajomych” zawierał link do Google Play, gdzie aplikacji nie ma</td>
+<td>konfigurowalny <code>safecheck.downloadUrl</code> (strona pobierania)</td>
+</tr>
+<tr>
+<td>B9 (2.5.3)</td>
+<td>klucze danych zduplikowane w 3 plikach (dawne D4)</td>
+<td><code>AlarmService</code> i <code>BootReceiver</code> korzystają z <code>LocalPrefs</code></td>
+</tr>
 </tbody></table></div>
 <hr>
 <h2 id="21-proponowany-rozwój-roadmapa">21. Proponowany rozwój (roadmapa) <a class="anchor" href="#21-proponowany-rozwój-roadmapa" aria-label="Link do sekcji">#</a></h2>
@@ -1641,7 +1820,7 @@ https://twoja-domena.pl/safecheck/docs.html?file=polityka-prywatnosci.md</code><
 <li>wiadomość SMS edytowalna przez użytkownika,</li>
 <li>powiadomienia przez komunikatory / e-mail (wymagałoby backendu),</li>
 <li>widżet na ekran główny i kafelek szybkich ustawień z „ŻYJĘ!”,</li>
-<li>wersja Premium bez reklam (Google Play Billing).</li>
+<li>wersja Premium bez reklam (np. Google Play Billing przy publikacji w sklepie albo inna forma płatności).</li>
 </ul>
 <hr>
 <h2 id="22-słownik-pojęć">22. Słownik pojęć <a class="anchor" href="#22-słownik-pojęć" aria-label="Link do sekcji">#</a></h2>

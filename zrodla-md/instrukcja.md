@@ -41,7 +41,15 @@ Aplikacja nie wymaga zakładania konta ani internetu do wysłania alarmu. SMS id
 - Telefon z systemem **Android 7.0 lub nowszym**.
 - **Karta SIM z możliwością wysyłania SMS-ów** (aktywna usługa, środki na koncie przy karcie na doładowania).
 - Włączona **lokalizacja (GPS)**, jeśli chcesz, żeby SMS zawierał Twoją pozycję.
-- Usługi Google Play (na większości telefonów są fabrycznie).
+- Usługi Google Play (Google Play Services – składnik systemu, na większości telefonów jest fabrycznie; potrzebny do lokalizacji i reklam).
+
+### Instalacja
+SafeCheck **nie jest dostępny w sklepie Google Play**. Aplikację instaluje się z pliku APK pobranego ze strony **[ADRES STRONY POBIERANIA]**:
+1. Pobierz plik `SafeCheck.apk` na telefon i otwórz go (z powiadomienia o pobraniu lub z folderu „Pobrane”).
+2. Jeśli telefon zapyta, zezwól przeglądarce lub menedżerowi plików na **instalowanie nieznanych aplikacji**.
+3. Naciśnij **Zainstaluj**.
+
+> Aplikacja zainstalowana z pliku APK nie aktualizuje się sama. Nowe wersje pobierasz z tej samej strony i instalujesz na poprzedniej – ustawienia zostają zachowane.
 
 ---
 
@@ -193,7 +201,7 @@ Otwierasz je ikoną **☰** w lewym górnym rogu ekranu głównego.
 | Pozycja | Opis |
 |---|---|
 | **Zmień Opiekuna** | dodawanie i usuwanie numerów opiekunów. Poprawny numer dodaje się sam po wpisaniu, zmiany zatwierdzasz przyciskiem **Zapisz** |
-| **Zaproś znajomych** | lista kontaktów z telefonu. Przycisk **Zaproś** wysyła SMS z linkiem do aplikacji w Google Play |
+| **Zaproś znajomych** | lista kontaktów z telefonu. Przycisk **Zaproś** wysyła SMS z linkiem do strony, z której można pobrać aplikację |
 | **Zarządzaj kontem** | zmiana imienia (przycisk **Edytuj**) |
 | **Język / Language** | zmiana języka aplikacji |
 | **O aplikacji** | wersja aplikacji, instrukcja, regulamin, polityka prywatności oraz – w krajach UE, Wielkiej Brytanii i Szwajcarii – **Ustawienia prywatności reklam** (zmiana zgody na reklamy spersonalizowane) |
@@ -275,7 +283,24 @@ Nie. W trybie czuwania nic nie liczy w tle, tylko system „budzi” ją o wyzna
 Tak. Alarm i SMS nie potrzebują internetu. Internet jest potrzebny tylko do wyświetlania reklam.
 
 **Zmieniłem telefon. Co z danymi?**
-Dane są zapisane w telefonie. Mogą zostać przeniesione przez kopię zapasową Google. Jeśli tak się nie stanie, skonfiguruj aplikację ponownie.
+SafeCheck nie ma własnej funkcji przenoszenia danych ani konta w internecie. Ustawienia mogą jednak zostać przeniesione przez **systemową kopię zapasową Androida** (kopia na koncie Google lub przenoszenie danych podczas konfiguracji nowego telefonu). To funkcja systemu, a nie aplikacji – zadziała tylko wtedy, gdy:
+- na starym telefonie była włączona kopia zapasowa Google (*Ustawienia → Google → Kopia zapasowa*) i system zdążył ją wykonać (zwykle raz na dobę, gdy telefon się ładuje i ma Wi-Fi),
+- na nowym telefonie zalogujesz się na to samo konto Google i przywrócisz kopię albo przeniesiesz dane ze starego telefonu.
+
+Ponieważ SafeCheck nie pochodzi ze sklepu Google Play, nowy telefon **nie zainstaluje go sam** podczas konfiguracji – trzeba ponownie pobrać plik APK ze strony i go zainstalować. System może przywrócić ustawienia z kopii w chwili tej instalacji, ale **nie jest to gwarantowane** (zależy od wersji Androida i producenta telefonu).
+
+Co zostanie przeniesione, a co nie:
+
+| Przenoszone | **Nie** przenoszone |
+|---|---|
+| imię | termin licznika – na nowym telefonie licznik **zaczyna odliczanie od nowa** (pełny ustawiony czas) |
+| numery opiekunów | uprawnienia (SMS, lokalizacja, powiadomienia, alarmy, bateria) – aplikacja poprosi o nie ponownie |
+| długość licznika, język | ustawienia autostartu i baterii producenta telefonu |
+| informacja, że konfiguracja została ukończona | decyzja dotycząca zgody na reklamy – formularz pojawi się ponownie |
+
+Po przywróceniu aplikacja wyświetli komunikat „Przywrócono ustawienia z kopii. Licznik liczy od nowa.”. Termin licznika celowo nie jest przenoszony: stary termin zwykle już minął i mógłby od razu uruchomić alarm oraz SMS do opiekunów.
+
+Jeśli ustawienia nie zostaną przywrócone, po prostu skonfiguruj aplikację od nowa – zajmuje to około minuty. **Po każdej zmianie telefonu sprawdź uprawnienia** (*Menu → Sprawdź uprawnienia*) i zrób test alarmu (rozdział 9).
 
 **Jak całkowicie usunąć dane?**
 **Menu → Usuń konto** albo odinstaluj aplikację.
@@ -299,4 +324,4 @@ Pytania, błędy, sugestie: **[E-MAIL KONTAKTOWY]**
 
 Dostawca aplikacji: **[NAZWA FIRMY / IMIĘ I NAZWISKO]**, [ADRES]
 
-*Ostatnia aktualizacja instrukcji: [DATA] (dotyczy wersji 2.5.2).*
+*Ostatnia aktualizacja instrukcji: [DATA] (dotyczy wersji 2.5.3).*

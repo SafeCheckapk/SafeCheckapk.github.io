@@ -67,6 +67,20 @@
     <main id="tresc" class="prose">
 <h1 id="historia-zmian">Historia zmian</h1>
 <p>Format zgodny z <a href="https://keepachangelog.com/pl/1.1.0/" rel="noopener" target="_blank">Keep a Changelog</a>, wersjonowanie: <code>versionName</code> (<code>versionCode</code>).</p>
+<h2 id="253-19">[2.5.3] (19) <a class="anchor" href="#253-19" aria-label="Link do sekcji">#</a></h2>
+<h3 id="naprawione">Naprawione <a class="anchor" href="#naprawione" aria-label="Link do sekcji">#</a></h3>
+<ul>
+<li><strong>Fałszywy alarm po przywróceniu kopii zapasowej.</strong> Ustawienia aplikacji mogą być przenoszone przez systemową kopię zapasową Androida. Wcześniej wraz z nimi wracał stary, zwykle już miniony termin licznika, więc pierwsze otwarcie aplikacji na nowym telefonie mogło od razu uruchomić alarm, a bez reakcji wysłać SMS do opiekunów. Termin licznika jest teraz w osobnym pliku <code>safecheck_device_state</code>, wyłączonym z kopii. Po przywróceniu licznik startuje od nowa i pojawia się komunikat „Przywrócono ustawienia z kopii. Licznik liczy od nowa.”.</li>
+<li><strong>Link w zaproszeniu SMS</strong> prowadził do Google Play, gdzie aplikacji nie ma. Teraz prowadzi do strony pobierania (<code>safecheck.downloadUrl</code>).</li>
+</ul>
+<h3 id="zmienione">Zmienione <a class="anchor" href="#zmienione" aria-label="Link do sekcji">#</a></h3>
+<ul>
+<li>Reguły kopii zapasowej (<code>backup_rules.xml</code>, <code>data_extraction_rules.xml</code>) obejmują wyłącznie plik ustawień <code>safecheck_local_db.xml</code>.</li>
+<li>Migracja: termin licznika zapisany przez wersje ≤ 2.5.2 jest automatycznie przenoszony do nowego pliku przy pierwszym uruchomieniu.</li>
+<li><code>AlarmService</code> i <code>BootReceiver</code> korzystają z <code>LocalPrefs</code>, a nazwy plików i kluczy są w jednym miejscu.</li>
+<li>Domyślne linki do dokumentów prowadzą do strony projektu <code>https://safecheckapk.github.io</code>.</li>
+<li>Dokumentacja: dokładny opis kopii zapasowej (co jest przenoszone, a co nie), model dystrybucji przez APK (bez Google Play), ryzyko reklam AdMob bez publikacji w sklepie.</li>
+</ul>
 <h2 id="252-18">[2.5.2] (18) <a class="anchor" href="#252-18" aria-label="Link do sekcji">#</a></h2>
 <h3 id="naprawione">Naprawione <a class="anchor" href="#naprawione" aria-label="Link do sekcji">#</a></h3>
 <ul>

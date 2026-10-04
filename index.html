@@ -46,7 +46,7 @@
         "name": "SafeCheck",
         "operatingSystem": "Android 7.0+",
         "applicationCategory": "LifestyleApplication",
-        "softwareVersion": "2.5.2",
+        "softwareVersion": "2.5.3",
         "inLanguage": ["pl", "en", "de", "fr"],
         "description": "Aplikacja bezpieczeństwa typu dead man's switch: gdy użytkownik nie potwierdzi obecności przed upływem ustawionego czasu, telefon włącza alarm, a następnie wysyła SMS z lokalizacją GPS do wskazanych opiekunów.",
         "screenshot": "https://safecheckapk.github.io/assets/img/screens/05-ekran-glowny.webp",
@@ -195,7 +195,7 @@
           <article class="card">
             <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-ads_click"/></svg></div>
             <h3>Gotowa monetyzacja</h3>
-            <p>Zintegrowany Google AdMob: baner i reklama pełnoekranowa. Identyfikatory zmienia się w jednym pliku konfiguracji.</p>
+            <p>Zintegrowany Google AdMob: baner i reklama pełnoekranowa. Identyfikatory zmienia się w jednym pliku konfiguracji. Pełne wyświetlanie reklam wymaga powiązania aplikacji ze sklepem – szczegóły w dokumentacji.</p>
           </article>
         </div>
       </div>
@@ -276,7 +276,8 @@
                 <tr><th scope="row">Biblioteki</th><td>Google AdMob, UMP, Play Services Location, libphonenumber</td></tr>
                 <tr><th scope="row">Build</th><td>Gradle 8.5 (Kotlin DSL), AGP 8.2</td></tr>
                 <tr><th scope="row">Języki</th><td>PL, EN, DE, FR</td></tr>
-                <tr><th scope="row">Wersja</th><td>2.5.2</td></tr>
+                <tr><th scope="row">Wersja</th><td>2.5.3</td></tr>
+                <tr><th scope="row">Dystrybucja</th><td>plik APK ze strony (bez Google Play), gotowy do ewentualnej publikacji w sklepie</td></tr>
               </table>
             </div>
           </div>
@@ -307,14 +308,14 @@
         </div>
         <div class="download">
           <div class="card">
-            <h3>SafeCheck 2.5.2 (demo)</h3>
+            <h3>SafeCheck 2.5.3 (demo)</h3>
             <p style="margin-bottom:20px">Plik APK, około 14 MB, Android 7.0 lub nowszy.</p>
             <a class="btn btn-primary" href="https://github.com/SafeCheckapk/SafeCheckapk.github.io/releases/latest/download/SafeCheck.apk">
               <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-download"/></svg>
               Pobierz SafeCheck.apk
             </a>
             <p style="margin-top:20px"><a href="https://github.com/SafeCheckapk/SafeCheckapk.github.io/releases" rel="noopener" target="_blank">Wszystkie wersje i suma kontrolna SHA-256</a></p>
-            <p class="hash">SHA-256: 90b9f3c337507cb32cece88cc9667da0078eeb7f6b933c71feb724626609a9e4</p>
+            <p class="hash">SHA-256: b3ff784b7900f787505988f7ed0ee048bc832460478c9cad12bbaf9aba3ec101</p>
           </div>
           <div class="card">
             <h3>Jak zainstalować</h3>
@@ -372,7 +373,15 @@
           </details>
           <details>
             <summary>Gdzie są przechowywane moje dane?</summary>
-            <p>Wyłącznie w telefonie. Aplikacja nie ma serwera ani konta. Lokalizacja jest pobierana tylko w chwili alarmu i trafia jedynie w SMS-ie do opiekunów.</p>
+            <p>W telefonie – aplikacja nie ma serwera ani konta. Jeśli masz włączoną kopię zapasową Google, system Android może przechowywać kopię ustawień (imię, opiekunowie) na Twoim koncie Google. Lokalizacja jest pobierana tylko w chwili alarmu i trafia jedynie w SMS-ie do opiekunów.</p>
+          </details>
+          <details>
+            <summary>Czy SafeCheck jest w Google Play?</summary>
+            <p>Nie. Aplikację pobiera się jako plik APK z tej strony. Nowe wersje instaluje się na poprzedniej, z zachowaniem ustawień. Kod jest przygotowany do publikacji w sklepie, jeśli nabywca zechce to zrobić.</p>
+          </details>
+          <details>
+            <summary>Co się stanie po zmianie telefonu?</summary>
+            <p>Aplikację trzeba zainstalować na nowym telefonie ze strony. Systemowa kopia zapasowa Androida może przenieść ustawienia (imię, opiekunów, długość licznika), ale nie jest to gwarantowane. Licznik zawsze startuje od nowa, a uprawnienia trzeba nadać ponownie. Szczegóły w <a href="instrukcja.html#10-najczęstsze-pytania-i-problemy">instrukcji</a>.</p>
           </details>
           <details>
             <summary>Co dokładnie dostanę, kupując projekt?</summary>

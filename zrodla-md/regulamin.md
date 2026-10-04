@@ -16,6 +16,7 @@
 2. Regulamin jest regulaminem, o którym mowa w art. 8 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną.
 3. Dostawcą Aplikacji jest **[NAZWA FIRMY / IMIĘ I NAZWISKO]** z siedzibą (adresem) w **[ADRES]**, NIP: **[NIP]**, REGON: **[REGON]**, adres e-mail: **[E-MAIL KONTAKTOWY]** („**Dostawca**”).
 4. Regulamin jest dostępny nieodpłatnie w Aplikacji (*Menu → O aplikacji → Regulamin*) oraz pod adresem **[ADRES URL REGULAMINU]**, w formie umożliwiającej jego pobranie, utrwalenie i wydrukowanie.
+5. Aplikacja **nie jest dystrybuowana przez sklep Google Play** ani inne sklepy z aplikacjami. Jest udostępniana wyłącznie jako plik instalacyjny APK na stronie **[ADRES STRONY POBIERANIA]**. Dostawca nie odpowiada za kopie Aplikacji pobrane z innych źródeł.
 
 ## § 2. Definicje
 
@@ -33,7 +34,7 @@ Użyte w Regulaminie pojęcia oznaczają:
 ## § 3. Wymagania techniczne
 
 1. Do korzystania z Aplikacji niezbędne jest:
-   1. urządzenie mobilne z systemem Android w wersji 7.0 lub nowszej, z usługami Google Play,
+   1. urządzenie mobilne z systemem Android w wersji 7.0 lub nowszej, z usługami Google Play (Google Play Services – składnik systemu Android),
    2. aktywna karta SIM umożliwiająca wysyłanie wiadomości SMS,
    3. nadanie Aplikacji uprawnień systemowych opisanych w instrukcji obsługi (m.in. wysyłanie SMS, powiadomienia, alarmy, lokalizacja, praca w tle),
    4. dostęp do internetu – wyłącznie w celu wyświetlania reklam i pobrania Aplikacji.
@@ -64,7 +65,7 @@ Użyte w Regulaminie pojęcia oznaczają:
 3. Użytkownik może w każdej chwili, bez podania przyczyny i bez kosztów, rozwiązać umowę przez:
    - użycie funkcji „Usuń konto”, która usuwa dane z urządzenia, lub
    - odinstalowanie Aplikacji.
-4. Dostawca może rozwiązać umowę z ważnych przyczyn, w szczególności w razie zakończenia rozwijania i udostępniania Aplikacji, informując o tym z co najmniej 14-dniowym wyprzedzeniem (np. komunikatem w Aplikacji lub w sklepie Google Play).
+4. Dostawca może rozwiązać umowę z ważnych przyczyn, w szczególności w razie zakończenia rozwijania i udostępniania Aplikacji, informując o tym z co najmniej 14-dniowym wyprzedzeniem (np. komunikatem w Aplikacji lub na stronie, z której pobiera się Aplikację).
 
 ## § 6. Obowiązki i oświadczenia Użytkownika
 
@@ -81,6 +82,7 @@ Użyte w Regulaminie pojęcia oznaczają:
    2. dbać o naładowanie urządzenia, zasięg sieci komórkowej i środki na wysyłanie SMS,
    3. po instalacji i po aktualizacjach systemu sprawdzić działanie Alarmu (instrukcja, rozdział „Dobre praktyki”),
    4. aktualizować numery Opiekunów.
+   5. po zmianie lub resecie urządzenia sprawdzić konfigurację i uprawnienia Aplikacji – ustawienia mogą zostać przywrócone przez systemową kopię zapasową Androida, jednak Licznik startuje wtedy od nowa, a uprawnienia trzeba nadać ponownie.
 
 ## § 7. Koszty
 
@@ -138,7 +140,7 @@ Zasady przetwarzania danych osobowych określa **Polityka Prywatności** dostęp
    - zmiany funkcji Aplikacji,
    - zmiany zasad wyświetlania reklam,
    - względów bezpieczeństwa.
-2. O zmianie Użytkownik zostanie poinformowany w Aplikacji lub w opisie aktualizacji w sklepie Google Play co najmniej 14 dni przed wejściem zmian w życie.
+2. O zmianie Użytkownik zostanie poinformowany w Aplikacji lub na stronie, z której pobiera się Aplikację, co najmniej 14 dni przed wejściem zmian w życie.
 3. Użytkownik, który nie akceptuje zmian, może rozwiązać umowę w sposób opisany w § 5 ust. 3.
 
 ## § 14. Postanowienia końcowe

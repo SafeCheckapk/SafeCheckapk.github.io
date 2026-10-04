@@ -103,8 +103,18 @@
 <li>Telefon z systemem <strong>Android 7.0 lub nowszym</strong>.</li>
 <li><strong>Karta SIM z możliwością wysyłania SMS-ów</strong> (aktywna usługa, środki na koncie przy karcie na doładowania).</li>
 <li>Włączona <strong>lokalizacja (GPS)</strong>, jeśli chcesz, żeby SMS zawierał Twoją pozycję.</li>
-<li>Usługi Google Play (na większości telefonów są fabrycznie).</li>
+<li>Usługi Google Play (Google Play Services – składnik systemu, na większości telefonów jest fabrycznie; potrzebny do lokalizacji i reklam).</li>
 </ul>
+<h3 id="instalacja">Instalacja <a class="anchor" href="#instalacja" aria-label="Link do sekcji">#</a></h3>
+<p>SafeCheck <strong>nie jest dostępny w sklepie Google Play</strong>. Aplikację instaluje się z pliku APK pobranego ze strony <strong>[ADRES STRONY POBIERANIA]</strong>:</p>
+<ol>
+<li>Pobierz plik <code>SafeCheck.apk</code> na telefon i otwórz go (z powiadomienia o pobraniu lub z folderu „Pobrane”).</li>
+<li>Jeśli telefon zapyta, zezwól przeglądarce lub menedżerowi plików na <strong>instalowanie nieznanych aplikacji</strong>.</li>
+<li>Naciśnij <strong>Zainstaluj</strong>.</li>
+</ol>
+<blockquote>
+<p>Aplikacja zainstalowana z pliku APK nie aktualizuje się sama. Nowe wersje pobierasz z tej samej strony i instalujesz na poprzedniej – ustawienia zostają zachowane.</p>
+</blockquote>
 <hr>
 <h2 id="3-pierwsze-uruchomienie--krok-po-kroku">3. Pierwsze uruchomienie – krok po kroku <a class="anchor" href="#3-pierwsze-uruchomienie--krok-po-kroku" aria-label="Link do sekcji">#</a></h2>
 <h3 id="zgoda-na-reklamy-ue-wielka-brytania-szwajcaria">Zgoda na reklamy (UE, Wielka Brytania, Szwajcaria) <a class="anchor" href="#zgoda-na-reklamy-ue-wielka-brytania-szwajcaria" aria-label="Link do sekcji">#</a></h3>
@@ -310,7 +320,7 @@ Zadzwoń do niego NATYCHMIAST!</code></pre>
 </tr>
 <tr>
 <td><strong>Zaproś znajomych</strong></td>
-<td>lista kontaktów z telefonu. Przycisk <strong>Zaproś</strong> wysyła SMS z linkiem do aplikacji w Google Play</td>
+<td>lista kontaktów z telefonu. Przycisk <strong>Zaproś</strong> wysyła SMS z linkiem do strony, z której można pobrać aplikację</td>
 </tr>
 <tr>
 <td><strong>Zarządzaj kontem</strong></td>
@@ -404,7 +414,36 @@ Nie. W trybie czuwania nic nie liczy w tle, tylko system „budzi” ją o wyzna
 <p><strong>Czy aplikacja działa bez internetu?</strong>
 Tak. Alarm i SMS nie potrzebują internetu. Internet jest potrzebny tylko do wyświetlania reklam.</p>
 <p><strong>Zmieniłem telefon. Co z danymi?</strong>
-Dane są zapisane w telefonie. Mogą zostać przeniesione przez kopię zapasową Google. Jeśli tak się nie stanie, skonfiguruj aplikację ponownie.</p>
+SafeCheck nie ma własnej funkcji przenoszenia danych ani konta w internecie. Ustawienia mogą jednak zostać przeniesione przez <strong>systemową kopię zapasową Androida</strong> (kopia na koncie Google lub przenoszenie danych podczas konfiguracji nowego telefonu). To funkcja systemu, a nie aplikacji – zadziała tylko wtedy, gdy:</p>
+<ul>
+<li>na starym telefonie była włączona kopia zapasowa Google (<em>Ustawienia → Google → Kopia zapasowa</em>) i system zdążył ją wykonać (zwykle raz na dobę, gdy telefon się ładuje i ma Wi-Fi),</li>
+<li>na nowym telefonie zalogujesz się na to samo konto Google i przywrócisz kopię albo przeniesiesz dane ze starego telefonu.</li>
+</ul>
+<p>Ponieważ SafeCheck nie pochodzi ze sklepu Google Play, nowy telefon <strong>nie zainstaluje go sam</strong> podczas konfiguracji – trzeba ponownie pobrać plik APK ze strony i go zainstalować. System może przywrócić ustawienia z kopii w chwili tej instalacji, ale <strong>nie jest to gwarantowane</strong> (zależy od wersji Androida i producenta telefonu).</p>
+<p>Co zostanie przeniesione, a co nie:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Przenoszone</th>
+<th><strong>Nie</strong> przenoszone</th>
+</tr>
+</thead><tbody><tr>
+<td>imię</td>
+<td>termin licznika – na nowym telefonie licznik <strong>zaczyna odliczanie od nowa</strong> (pełny ustawiony czas)</td>
+</tr>
+<tr>
+<td>numery opiekunów</td>
+<td>uprawnienia (SMS, lokalizacja, powiadomienia, alarmy, bateria) – aplikacja poprosi o nie ponownie</td>
+</tr>
+<tr>
+<td>długość licznika, język</td>
+<td>ustawienia autostartu i baterii producenta telefonu</td>
+</tr>
+<tr>
+<td>informacja, że konfiguracja została ukończona</td>
+<td>decyzja dotycząca zgody na reklamy – formularz pojawi się ponownie</td>
+</tr>
+</tbody></table></div>
+<p>Po przywróceniu aplikacja wyświetli komunikat „Przywrócono ustawienia z kopii. Licznik liczy od nowa.”. Termin licznika celowo nie jest przenoszony: stary termin zwykle już minął i mógłby od razu uruchomić alarm oraz SMS do opiekunów.</p>
+<p>Jeśli ustawienia nie zostaną przywrócone, po prostu skonfiguruj aplikację od nowa – zajmuje to około minuty. <strong>Po każdej zmianie telefonu sprawdź uprawnienia</strong> (<em>Menu → Sprawdź uprawnienia</em>) i zrób test alarmu (rozdział 9).</p>
 <p><strong>Jak całkowicie usunąć dane?</strong>
 <strong>Menu → Usuń konto</strong> albo odinstaluj aplikację.</p>
 <p><strong>Czy opiekun musi mieć zainstalowaną aplikację?</strong>
@@ -420,7 +459,7 @@ Nie. Wystarczy, że może odbierać SMS-y.</p>
 <h2 id="12-kontakt">12. Kontakt <a class="anchor" href="#12-kontakt" aria-label="Link do sekcji">#</a></h2>
 <p>Pytania, błędy, sugestie: <strong>[E-MAIL KONTAKTOWY]</strong></p>
 <p>Dostawca aplikacji: <strong>[NAZWA FIRMY / IMIĘ I NAZWISKO]</strong>, [ADRES]</p>
-<p><em>Ostatnia aktualizacja instrukcji: [DATA] (dotyczy wersji 2.5.2).</em></p>
+<p><em>Ostatnia aktualizacja instrukcji: [DATA] (dotyczy wersji 2.5.3).</em></p>
 
       <p><a class="back-top" href="#tresc">↑ Na górę</a></p>
     </main>

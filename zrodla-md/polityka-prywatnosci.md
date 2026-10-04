@@ -18,7 +18,7 @@ W tym dokumencie wyjaśniamy, jakie dane wykorzystuje aplikacja **SafeCheck** (�
 
 ## 1. Najważniejsze w skrócie
 
-- ✅ **Nie masz u nas konta, a my nie mamy serwera.** Twoje imię, numery opiekunów i ustawienia są zapisane **tylko w Twoim telefonie**.
+- ✅ **Nie masz u nas konta, a my nie mamy serwera.** Twoje imię, numery opiekunów i ustawienia są zapisane **w Twoim telefonie**. Jeśli korzystasz z kopii zapasowej Google, system Android może przechowywać ich kopię na Twoim koncie Google (bez terminu licznika) – patrz rozdział 4.4.
 - ✅ **Nie widzimy Twoich danych.** Dostawca Aplikacji nie otrzymuje Twojego imienia, numerów, lokalizacji ani kontaktów.
 - 📍 **Lokalizacja** jest pobierana tylko w chwili alarmu, gdy nie zareagujesz, i trafia wyłącznie w SMS-ie do wskazanych przez Ciebie opiekunów.
 - 📇 **Kontakty** są odczytywane tylko wtedy, gdy otworzysz „Zaproś znajomych”, i nie są nigdzie zapisywane ani wysyłane.
@@ -46,9 +46,10 @@ W sprawach dotyczących danych osobowych pisz na powyższy adres e-mail.
 
 | Dane | Skąd | Gdzie są przechowywane | Do czego służą |
 |---|---|---|---|
-| **Imię** | wpisujesz je przy konfiguracji | tylko w telefonie | podpisanie SMS-a alarmowego („Anna NIE POTWIERDZIŁ OBECNOŚCI!”) |
-| **Numery telefonów opiekunów** | wpisujesz je | tylko w telefonie | wysłanie SMS-a alarmowego i wiadomości o fałszywym alarmie |
-| **Ustawienia** (język, długość licznika, termin, postęp konfiguracji) | Aplikacja | tylko w telefonie | działanie licznika i Aplikacji |
+| **Imię** | wpisujesz je przy konfiguracji | w telefonie (oraz w kopii zapasowej Google, jeśli ją włączyłeś – rozdz. 4.4) | podpisanie SMS-a alarmowego („Anna NIE POTWIERDZIŁ OBECNOŚCI!”) |
+| **Numery telefonów opiekunów** | wpisujesz je | w telefonie (oraz w kopii zapasowej Google, jeśli ją włączyłeś – rozdz. 4.4) | wysłanie SMS-a alarmowego i wiadomości o fałszywym alarmie |
+| **Ustawienia** (język, długość licznika, postęp konfiguracji) | Aplikacja | w telefonie (oraz w kopii zapasowej Google, jeśli ją włączyłeś) | działanie Aplikacji |
+| **Termin licznika** (moment, w którym upływa czas) | Aplikacja | **tylko w telefonie** – celowo wyłączony z kopii zapasowej | uruchomienie alarmu o właściwej porze |
 | **Lokalizacja urządzenia** (GPS) | system Android / usługi Google Play | **nie jest zapisywana** | jednorazowo, w chwili wysłania SMS-a alarmowego, jako link do mapy w treści SMS |
 | **Kontakty z książki telefonicznej** (imię, numer) | system Android | **nie są zapisywane** | wyświetlenie listy w oknie „Zaproś znajomych”, gdy je otworzysz |
 | **Dane urządzenia i identyfikator reklamowy** | Google AdMob | po stronie Google | wyświetlanie reklam (patrz rozdział 6) |
@@ -68,7 +69,7 @@ Jeśli licznik dojdzie do zera i nie zareagujesz na alarm, Aplikacja wysyła **z
 Jeśli potem potwierdzisz obecność, opiekunowie dostaną SMS o fałszywym alarmie.
 
 ### 4.2 Zapraszane osoby
-Po naciśnięciu „Zaproś” przy wybranym kontakcie wysyłany jest SMS z linkiem do Aplikacji w Google Play. Robisz to świadomie, dla każdej osoby osobno.
+Po naciśnięciu „Zaproś” przy wybranym kontakcie wysyłany jest SMS z linkiem do strony, z której można pobrać Aplikację. Robisz to świadomie, dla każdej osoby osobno.
 
 ### 4.3 Operator komórkowy
 SMS-y wysyła Twój operator na zasadach Twojej umowy z nim. Operator jest odrębnym administratorem danych związanych z usługą telekomunikacyjną.
@@ -76,7 +77,7 @@ SMS-y wysyła Twój operator na zasadach Twojej umowy z nim. Operator jest odrę
 ### 4.4 Google
 - **Google AdMob** (Google Ireland Limited): reklamy, patrz rozdział 6.
 - **Usługi lokalizacyjne Google Play**: system ustala pozycję urządzenia na żądanie Aplikacji. Google przetwarza dane lokalizacyjne zgodnie z [Polityką prywatności Google](https://policies.google.com/privacy) i ustawieniami lokalizacji na Twoim koncie Google.
-- **Kopia zapasowa Androida**: jeśli masz ją włączoną, system może zapisać ustawienia Aplikacji (w tym imię i numery opiekunów) w kopii na Twoim koncie Google, aby przywrócić je po zmianie telefonu. Funkcję tę wyłączysz w ustawieniach telefonu (*Ustawienia → Google → Kopia zapasowa*).
+- **Kopia zapasowa Androida (Auto Backup)**: to funkcja systemu Android, a nie Aplikacji. Jeśli masz włączoną kopię zapasową Google, system może zapisać na Twoim koncie Google kopię ustawień Aplikacji: **imię, numery opiekunów, długość licznika, język i informację o ukończonej konfiguracji**. Kopia służy wyłącznie do przywrócenia tych ustawień po zmianie lub resecie telefonu. **Termin licznika nie jest kopiowany** – po przywróceniu licznik zaczyna odliczanie od nowa. Kopia jest przechowywana przez Google na zasadach Twojego konta Google; administrator Aplikacji nie ma do niej dostępu. Kopię wyłączysz w *Ustawienia → Google → Kopia zapasowa* (nazwa może się różnić w zależności od telefonu), a usuniesz w ustawieniach konta Google (*Dysk Google → Kopie zapasowe*).
 
 Administrator **nie sprzedaje** danych i nie przekazuje ich innym podmiotom.
 
@@ -126,7 +127,8 @@ Administrator nie przekazuje danych poza Europejski Obszar Gospodarczy. Google m
 
 | Dane | Okres |
 |---|---|
-| Imię, numery opiekunów, ustawienia | do czasu użycia funkcji „Usuń konto”, wyczyszczenia danych Aplikacji lub jej odinstalowania. Kopia zapasowa Google zgodnie z ustawieniami Twojego konta |
+| Imię, numery opiekunów, ustawienia | w telefonie: do czasu użycia funkcji „Usuń konto”, wyczyszczenia danych Aplikacji lub jej odinstalowania. W kopii zapasowej Google (jeśli włączona): zgodnie z zasadami Google – możesz ją w każdej chwili usunąć w ustawieniach konta Google |
+| Termin licznika | tylko w telefonie, do czasu „Usuń konto”, wyczyszczenia danych lub odinstalowania Aplikacji |
 | Lokalizacja | nie jest przechowywana przez Aplikację. Pozostaje w treści wysłanych SMS-ów u Ciebie i u odbiorców |
 | Kontakty | nie są przechowywane |
 | Korespondencja e-mail z administratorem | przez czas potrzebny do obsługi sprawy, a następnie do upływu terminu przedawnienia roszczeń |
@@ -192,6 +194,6 @@ Aplikacja jest przeznaczona dla osób, które ukończyły **16 lat**. Nie kieruj
 
 ## 13. Zmiany polityki prywatności
 
-O istotnych zmianach poinformujemy w Aplikacji lub w opisie aktualizacji w Google Play. Aktualna wersja jest zawsze dostępna pod adresem **[ADRES URL POLITYKI PRYWATNOŚCI]** oraz w Aplikacji (*Menu → O aplikacji → Polityka Prywatności*).
+O istotnych zmianach poinformujemy w Aplikacji lub na stronie, z której pobierasz Aplikację. Aktualna wersja jest zawsze dostępna pod adresem **[ADRES URL POLITYKI PRYWATNOŚCI]** oraz w Aplikacji (*Menu → O aplikacji → Polityka Prywatności*).
 
 **Kontakt:** [E-MAIL KONTAKTOWY]
