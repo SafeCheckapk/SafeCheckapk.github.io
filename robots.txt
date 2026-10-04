@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://safecheckapk.github.io/sitemap.xml

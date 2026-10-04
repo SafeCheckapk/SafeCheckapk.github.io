@@ -1,0 +1,12 @@
+{
+  "name": "safecheck-strona",
+  "private": true,
+  "description": "Strona SafeCheck (GitHub Pages). Generator stron dokumentów z plików Markdown.",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build-docs.mjs"
+  },
+  "devDependencies": {
+    "marked": "^12.0.2"
+  }
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- PLIK GENEROWANY przez tools/build-docs.mjs z katalogu zrodla-md/ – nie edytuj ręcznie. -->
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} – SafeCheck</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <link rel="canonical" href="{{URL}}">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#2e7d32">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="SafeCheck">
+  <meta property="og:title" content="{{TITLE}} – SafeCheck">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="{{URL}}">
+  <meta property="og:image" content="https://safecheckapk.github.io/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "SafeCheck", "item": "https://safecheckapk.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "{{TITLE}}", "item": "{{URL}}" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#tresc">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="SafeCheck – strona główna">
+        <img src="assets/img/logo.svg" alt="" width="32" height="32">
+        SafeCheck
+      </a>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <a href="/#jak-dziala">Jak działa</a>
+        <a href="/#funkcje">Funkcje</a>
+        <a href="/#pobierz">Pobierz</a>
+        <a href="/#dokumenty">Dokumenty</a>
+      </nav>
+      <a class="btn btn-primary btn-sm header-cta" href="/#sprzedaz">
+        <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-sell"/></svg>
+        Kup projekt
+      </a>
+    </div>
+  </header>
+
+  <div class="wrap doc-layout">
+    <nav class="doc-nav" aria-label="Dokumenty">
+          {{NAV}}
+    </nav>
+    <main id="tresc" class="prose">
+{{CONTENT}}
+      <p><a class="back-top" href="#tresc">↑ Na górę</a></p>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-bottom" style="margin-top:0;padding-top:0;border-top:0">
+        <span>© <span id="rok">2026</span> SafeCheck · <a href="/">Strona główna</a> · <a href="/#sprzedaz">Projekt na sprzedaż</a></span>
+        <span><a href="mailto:pawelm286.97+safecheck@gmail.com">pawelm286.97+safecheck@gmail.com</a></span>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById("rok").textContent = new Date().getFullYear();</script>
+  {{MERMAID}}
+</body>
+</html>
