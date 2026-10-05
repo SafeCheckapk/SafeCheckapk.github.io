@@ -5,7 +5,7 @@ Strona promocyjna aplikacji **SafeCheck** (Android), publikowana przez GitHub Pa
 
 SafeCheck to aplikacja bezpieczeństwa typu *dead man's switch*. Jeśli użytkownik nie potwierdzi obecności przed upływem ustawionego czasu, telefon włącza alarm, a następnie wysyła SMS z lokalizacją GPS do wskazanych opiekunów.
 
-**Projekt jest na sprzedaż.** Kod źródłowy znajduje się w osobnym, prywatnym repozytorium. Kontakt: [Discussions](https://github.com/SafeCheckapk/SafeCheckapk.github.io/discussions) lub pawelm286.97+safecheck@gmail.com.
+**Projekt jest na sprzedaż.** Kod źródłowy znajduje się w osobnym, prywatnym repozytorium. Kontakt: [Discussions](https://github.com/SafeCheckapk/SafeCheckapk.github.io/discussions) lub pxware@pxware.pl.
 
 ## Pobieranie
 

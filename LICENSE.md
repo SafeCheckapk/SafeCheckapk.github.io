@@ -1,6 +1,6 @@
 # Licencja i prawa autorskie
 
-**Copyright © 2026 właściciel projektu SafeCheck (konto GitHub [SafeCheckapk](https://github.com/SafeCheckapk), kontakt: pawelm286.97+safecheck@gmail.com). Wszelkie prawa zastrzeżone.**
+**Copyright © 2026 Paweł Mościbrodzki, NIP 5372682524 – właściciel projektu SafeCheck (konto GitHub [SafeCheckapk](https://github.com/SafeCheckapk), kontakt: pxware@pxware.pl). Wszelkie prawa zastrzeżone.**
 
 Aplikacja **SafeCheck**, jej kod, nazwa, logo, grafiki, zrzuty ekranu, teksty i dokumentacja oraz niniejsza strona internetowa są utworami chronionymi przez ustawę z dnia 4 lutego 1994 r. o prawie autorskim i prawach pokrewnych. Autorskie prawa majątkowe przysługują właścicielowi projektu.
 
@@ -46,6 +46,6 @@ Aplikacja i strona korzystają z elementów objętych odrębnymi licencjami. Nin
 
 ## 5. Naruszenia
 
-Naruszenie praw autorskich może skutkować odpowiedzialnością cywilną (art. 79 ustawy o prawie autorskim i prawach pokrewnych) i karną (art. 115–118 tej ustawy). Informacje o naruszeniach i prośby o zgodę: **pawelm286.97+safecheck@gmail.com**
+Naruszenie praw autorskich może skutkować odpowiedzialnością cywilną (art. 79 ustawy o prawie autorskim i prawach pokrewnych) i karną (art. 115–118 tej ustawy). Informacje o naruszeniach i prośby o zgodę: **pxware@pxware.pl**
 
 Do spraw związanych z niniejszą licencją stosuje się prawo polskie.

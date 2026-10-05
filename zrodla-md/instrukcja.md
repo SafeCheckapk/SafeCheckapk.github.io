@@ -44,7 +44,7 @@ Aplikacja nie wymaga zakładania konta ani internetu do wysłania alarmu. SMS id
 - Usługi Google Play (Google Play Services – składnik systemu, na większości telefonów jest fabrycznie; potrzebny do lokalizacji i reklam).
 
 ### Instalacja
-SafeCheck **nie jest dostępny w sklepie Google Play**. Aplikację instaluje się z pliku APK pobranego ze strony **[ADRES STRONY POBIERANIA]**:
+SafeCheck **nie jest dostępny w sklepie Google Play**. Aplikację instaluje się z pliku APK pobranego ze strony **https://safecheckapk.github.io**:
 1. Pobierz plik `SafeCheck.apk` na telefon i otwórz go (z powiadomienia o pobraniu lub z folderu „Pobrane”).
 2. Jeśli telefon zapyta, zezwól przeglądarce lub menedżerowi plików na **instalowanie nieznanych aplikacji**.
 3. Naciśnij **Zainstaluj**.
@@ -320,8 +320,8 @@ Nie. Wystarczy, że może odbierać SMS-y.
 
 ## 12. Kontakt
 
-Pytania, błędy, sugestie: **[E-MAIL KONTAKTOWY]**
+Pytania, błędy, sugestie: **pxware@pxware.pl**
 
-Dostawca aplikacji: **[NAZWA FIRMY / IMIĘ I NAZWISKO]**, [ADRES]
+Dostawca aplikacji: **Paweł Mościbrodzki**, NIP 5372682524
 
-*Ostatnia aktualizacja instrukcji: [DATA] (dotyczy wersji 2.5.3).*
+*Ostatnia aktualizacja instrukcji: 5 października 2026 r. (dotyczy wersji 2.5.3).*

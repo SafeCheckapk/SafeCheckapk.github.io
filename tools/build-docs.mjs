@@ -110,7 +110,7 @@ for (const page of PAGES) {
   const html = marked.parse(md);
   // Wzory dokumentów prawnych: informacja dla czytelnika o polach do uzupełnienia.
   const notice = page.template
-    ? `<blockquote><p><strong>Wzór dokumentu.</strong> Ten dokument jest częścią projektu SafeCheck oferowanego na sprzedaż. Pola w nawiasach kwadratowych [ … ] uzupełnia wydawca aplikacji.</p></blockquote>
+    ? `<blockquote><p><strong>Wzór dokumentu.</strong> Ten dokument jest częścią projektu SafeCheck oferowanego na sprzedaż. Po sprzedaży projektu nabywca wpisuje w nim własne dane jako wydawca aplikacji.</p></blockquote>
 `
     : "";
 

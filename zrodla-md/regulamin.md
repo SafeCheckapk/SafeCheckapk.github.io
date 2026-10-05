@@ -1,22 +1,22 @@
 <!--
   NOTA DLA WYDAWCY APLIKACJI (niewidoczna po wyrenderowaniu):
-  To wzór regulaminu przygotowany pod polskie prawo. Przed publikacją
-  uzupełnij wszystkie pola w nawiasach kwadratowych […] i zleć weryfikację
+  To wzór regulaminu przygotowany pod polskie prawo.
+  dane Dostawcy są uzupełnione; przy zmianie właściciela podmień je i zleć weryfikację
   prawnikowi – szczególnie jeśli zmienisz model biznesowy (np. płatna wersja),
   zakres danych albo kraj prowadzenia działalności.
 -->
 
 # Regulamin aplikacji SafeCheck
 
-**Obowiązuje od:** [DATA WEJŚCIA W ŻYCIE]
+**Obowiązuje od:** 5 października 2026 r.
 
 ## § 1. Postanowienia ogólne
 
 1. Niniejszy regulamin („**Regulamin**”) określa zasady korzystania z aplikacji mobilnej **SafeCheck** („**Aplikacja**”) na urządzenia z systemem Android.
 2. Regulamin jest regulaminem, o którym mowa w art. 8 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną.
-3. Dostawcą Aplikacji jest **[NAZWA FIRMY / IMIĘ I NAZWISKO]** z siedzibą (adresem) w **[ADRES]**, NIP: **[NIP]**, REGON: **[REGON]**, adres e-mail: **[E-MAIL KONTAKTOWY]** („**Dostawca**”).
-4. Regulamin jest dostępny nieodpłatnie w Aplikacji (*Menu → O aplikacji → Regulamin*) oraz pod adresem **[ADRES URL REGULAMINU]**, w formie umożliwiającej jego pobranie, utrwalenie i wydrukowanie.
-5. Aplikacja **nie jest dystrybuowana przez sklep Google Play** ani inne sklepy z aplikacjami. Jest udostępniana wyłącznie jako plik instalacyjny APK na stronie **[ADRES STRONY POBIERANIA]**. Dostawca nie odpowiada za kopie Aplikacji pobrane z innych źródeł.
+3. Dostawcą Aplikacji jest **Paweł Mościbrodzki**, NIP: **5372682524**, adres e-mail: **pxware@pxware.pl** („**Dostawca**”).
+4. Regulamin jest dostępny nieodpłatnie w Aplikacji (*Menu → O aplikacji → Regulamin*) oraz pod adresem https://safecheckapk.github.io/regulamin.html, w formie umożliwiającej jego pobranie, utrwalenie i wydrukowanie.
+5. Aplikacja **nie jest dystrybuowana przez sklep Google Play** ani inne sklepy z aplikacjami. Jest udostępniana wyłącznie jako plik instalacyjny APK na stronie https://safecheckapk.github.io. Dostawca nie odpowiada za kopie Aplikacji pobrane z innych źródeł.
 
 ## § 2. Definicje
 
@@ -38,7 +38,7 @@ Użyte w Regulaminie pojęcia oznaczają:
    2. aktywna karta SIM umożliwiająca wysyłanie wiadomości SMS,
    3. nadanie Aplikacji uprawnień systemowych opisanych w instrukcji obsługi (m.in. wysyłanie SMS, powiadomienia, alarmy, lokalizacja, praca w tle),
    4. dostęp do internetu – wyłącznie w celu wyświetlania reklam i pobrania Aplikacji.
-2. Prawidłowe działanie Aplikacji może zależeć od ustawień oszczędzania energii wprowadzonych przez producenta urządzenia. Zalecenia w tym zakresie zawiera instrukcja obsługi dostępna pod adresem **[ADRES URL INSTRUKCJI]**.
+2. Prawidłowe działanie Aplikacji może zależeć od ustawień oszczędzania energii wprowadzonych przez producenta urządzenia. Zalecenia w tym zakresie zawiera instrukcja obsługi dostępna pod adresem https://safecheckapk.github.io/instrukcja.html.
 
 ## § 4. Zakres i charakter Usługi
 
@@ -118,7 +118,7 @@ Użyte w Regulaminie pojęcia oznaczają:
 ## § 10. Zgodność treści cyfrowej z umową i reklamacje
 
 1. Dostawca odpowiada wobec Konsumenta za zgodność Aplikacji z umową na zasadach określonych w ustawie z dnia 30 maja 2014 r. o prawach konsumenta (rozdział 5b), w zakresie, w jakim przepisy te mają zastosowanie.
-2. Reklamacje dotyczące działania Aplikacji można składać na adres e-mail **[E-MAIL KONTAKTOWY]** lub pisemnie na adres **[ADRES]**.
+2. Reklamacje dotyczące działania Aplikacji można składać na adres e-mail **pxware@pxware.pl**.
 3. Reklamacja powinna zawierać opis problemu, model urządzenia, wersję systemu Android i wersję Aplikacji (*Menu → O aplikacji*) oraz dane kontaktowe.
 4. Dostawca rozpatruje reklamację w terminie **14 dni** od jej otrzymania i informuje o wyniku drogą elektroniczną lub pisemnie.
 
@@ -131,7 +131,7 @@ Użyte w Regulaminie pojęcia oznaczają:
 
 ## § 12. Dane osobowe
 
-Zasady przetwarzania danych osobowych określa **Polityka Prywatności** dostępna w Aplikacji oraz pod adresem **[ADRES URL POLITYKI PRYWATNOŚCI]**.
+Zasady przetwarzania danych osobowych określa **Polityka Prywatności** dostępna w Aplikacji oraz pod adresem https://safecheckapk.github.io/polityka-prywatnosci.html.
 
 ## § 13. Zmiany Regulaminu
 

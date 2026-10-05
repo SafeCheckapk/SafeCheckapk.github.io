@@ -866,7 +866,7 @@ Przy każdym wydaniu zwiększ `versionCode` (liczba całkowita, zawsze rosnąca 
 
 - [ ] własne wartości w `gradle.properties` (applicationId, AdMob, linki, strona pobierania)
 - [ ] własny `powered_by`, ikona i logo
-- [ ] uzupełnione dane administratora w regulaminie i polityce prywatności (pola `[…]`)
+- [ ] dane wydawcy w regulaminie, polityce prywatności, instrukcji i licencji (obecnie: Paweł Mościbrodzki – nabywca podmienia na swoje)
 - [ ] opublikowane dokumenty z `docs/strona/` pod adresami z konfiguracji
 - [ ] `app-ads.txt` na stronie dewelopera (wymóg AdMob)
 - [ ] opublikowany komunikat zgody w AdMob → *Privacy & messaging* (formularz UMP jest już w kodzie)

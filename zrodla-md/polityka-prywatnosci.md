@@ -1,6 +1,6 @@
 <!--
   NOTA DLA WYDAWCY APLIKACJI (niewidoczna po wyrenderowaniu):
-  1. Uzupełnij pola […] i zleć weryfikację prawnikowi.
+  1. Dane administratora są uzupełnione; przy zmianie właściciela podmień je i zleć weryfikację prawnikowi.
   2. Rozdział 6 opisuje formularz zgody Google UMP zaimplementowany w aplikacji
      (AdsConsentManager.kt). Przed publikacją opublikuj komunikat zgody w konsoli
      AdMob (Privacy & messaging -> European regulations).
@@ -10,7 +10,7 @@
 
 # Polityka prywatności aplikacji SafeCheck
 
-**Obowiązuje od:** [DATA WEJŚCIA W ŻYCIE]
+**Obowiązuje od:** 5 października 2026 r.
 
 W tym dokumencie wyjaśniamy, jakie dane wykorzystuje aplikacja **SafeCheck** („**Aplikacja**”), w jakim celu, komu są przekazywane i jakie prawa Ci przysługują. Dokument spełnia obowiązek informacyjny z art. 13 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 („**RODO**”).
 
@@ -31,10 +31,9 @@ W tym dokumencie wyjaśniamy, jakie dane wykorzystuje aplikacja **SafeCheck** (�
 
 W zakresie, w jakim przetwarzamy dane osobowe, administratorem jest:
 
-**[NAZWA FIRMY / IMIĘ I NAZWISKO]**
-[ADRES]
-NIP: [NIP]
-e-mail: **[E-MAIL KONTAKTOWY]**
+**Paweł Mościbrodzki**  
+NIP: 5372682524  
+e-mail: **pxware@pxware.pl**
 
 W sprawach dotyczących danych osobowych pisz na powyższy adres e-mail.
 
@@ -194,6 +193,6 @@ Aplikacja jest przeznaczona dla osób, które ukończyły **16 lat**. Nie kieruj
 
 ## 13. Zmiany polityki prywatności
 
-O istotnych zmianach poinformujemy w Aplikacji lub na stronie, z której pobierasz Aplikację. Aktualna wersja jest zawsze dostępna pod adresem **[ADRES URL POLITYKI PRYWATNOŚCI]** oraz w Aplikacji (*Menu → O aplikacji → Polityka Prywatności*).
+O istotnych zmianach poinformujemy w Aplikacji lub na stronie, z której pobierasz Aplikację. Aktualna wersja jest zawsze dostępna pod adresem https://safecheckapk.github.io/polityka-prywatnosci.html oraz w Aplikacji (*Menu → O aplikacji → Polityka Prywatności*).
 
-**Kontakt:** [E-MAIL KONTAKTOWY]
+**Kontakt:** pxware@pxware.pl
